@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="122px" height="122px" viewBox="0 0 122 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>椭圆形</title>
+    <defs>
+        <linearGradient x1="29.5584161%" y1="4.64677944%" x2="70.6183616%" y2="95.9919807%" id="linearGradient-1">
+            <stop stop-color="#B2AFFF" offset="0%"></stop>
+            <stop stop-color="#7672E2" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="公众号" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="扫描设备二维码" transform="translate(-126.000000, -465.000000)" fill="url(#linearGradient-1)">
+            <circle id="椭圆形" cx="187" cy="526" r="61"></circle>
+        </g>
+    </g>
+</svg>
