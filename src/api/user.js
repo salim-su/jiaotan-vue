@@ -2,28 +2,25 @@ import api from './index'
 // axios
 import request from '@/utils/request'
 
-
-// 发送验证码
-export function sendCode(params) {
+/* ====================== */
+export function deviceInfo(deviceId) {
   return request({
-    url: api.SendCode,
+    url: api.DeviceInfo,
     method: 'get',
-    params,
+    params: {
+      deviceId: deviceId
+    },
     hideloading: true
   })
 }
-
-// 登录
-export function loginSystem(params) {
+export function repair(data) {
   return request({
-    url: api.LoginSystem,
+    url: api.Repair,
     method: 'get',
-    params,
+    data,
     hideloading: true
   })
 }
-
-
 // 获取微信SDK权限
 export function getWX(url) {
   return request({
@@ -34,28 +31,7 @@ export function getWX(url) {
     },
     hideloading: true
   })
-}
-
-
-// 获取安全告知
-export function getSafetyNotice() {
-  return request({
-    url: api.GetSafetyNotice,
-    method: 'get',
-    hideloading: true
-  })
-}
-
-// 获取试题
-export function getQuestionList() {
-  return request({
-    url: api.GetQuestionList,
-    method: 'get',
-    hideloading: true
-  })
-}
-
-// 获取字典
+}// 获取字典
 export function dictionary(code) {
   return request({
     url: api.Dictionary,
@@ -85,69 +61,6 @@ export function getPerson(deptId) {
       deptId: deptId,
       size: 999
     },
-    hideloading: true
-  })
-}
-
-// 预约申请
-export function subscribe(data) {
-  return request({
-    url: api.Subscribe,
-    method: 'post',
-    data,
-    hideloading: true
-  })
-}
-
-// 随行人员填报
-export function entourageSubmit(data) {
-  return request({
-    url: api.EntourageSubmit,
-    method: 'post',
-    data,
-    hideloading: true
-  })
-}
-
-// 通过openId获取预约状态信息
-export function apStatusByOpenId(openId) {
-  return request({
-    url: api.ApStatusByOpenId,
-    method: 'get',
-    params: {
-      openId: openId
-    },
-    hideloading: true
-  })
-}
-
-// 通过apPersonId获取预约预加载信息
-export function preloadApByApPersonId(apPersonId) {
-  return request({
-    url: api.PreloadApByApPersonId,
-    method: 'get',
-    params: {
-      apPersonId: apPersonId
-    },
-    hideloading: true
-  })
-}
-/* ====================== */
-export function deviceInfo(deviceId) {
-  return request({
-    url: api.DeviceInfo,
-    method: 'get',
-    params: {
-      deviceId: deviceId
-    },
-    hideloading: true
-  })
-}
-export function repair(data) {
-  return request({
-    url: api.Repair,
-    method: 'get',
-    data,
     hideloading: true
   })
 }
