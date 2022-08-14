@@ -85,25 +85,40 @@
           />
         </van-popup>
 
+
+        <div class='flex justify-content-between pl20 pr20'>
+
+
+          <van-button class='mt30 login-btn ml10 mr10' color='linear-gradient(to bottom, #C8C8C8, #C8C8C8)'
+                      round
+                      block
+                      @click='cancel'>
+            <span class='cfff ls2'>取消</span>
+          </van-button>
+
+
+          <van-button class='mt30 login-btn ml10 mr10' color='linear-gradient(to bottom, #9e9be9, #7A76E4)'
+                      round
+                      block
+                      @click='allsubmit'>
+            <span class='cfff ls2'>提交</span>
+          </van-button>
+
+
+        </div>
+
       </van-form>
     </div>
-    <van-button class='mt30 login-btn' color='linear-gradient(to bottom, #6FCAB3, #2085A8)'
-                round
-                block
-                @click='allsubmit'>
-      <span class='cfff ls2'>提交申请</span>
-    </van-button>
+
+
   </div>
-
-
 </template>
-
 <script>
 import { Toast } from 'vant'
-import { getDept, getPerson } from 'api/user'
+import { getDept, getPerson, repair } from 'api/user'
 
 export default {
-  name: 'subscribe-info',
+  name: 'repairs',
   data() {
     return {
       describe: '',
@@ -116,10 +131,17 @@ export default {
       auditUser: '',
       auditUserId: '',
       showAuditDeptPicker: false,
-      showAuditUserPicker: false
+      showAuditUserPicker: false,
+      deviceId: ''
     }
   },
   methods: {
+    cancel() {
+      this.$router.replace({ path: '/scan' })
+    },
+    onClickLeft() {
+      this.$router.replace({ path: '/device-info', query: { deviceId: this.deviceId } })
+    },
     go() {
       if (this.auditDeptId === '') {
         Toast({
@@ -151,14 +173,22 @@ export default {
       this.showAuditDeptPicker = false
     },
     onSubmit(values) {
-      console.log(values)
-      console.log(this.photoIDPerson.map((e) => e).join(','))
+      const psotData = {
+        openId: this.$openId.openId,
+        applicant: this.auditUserId,
+        ossIds: this.photoIDPerson.map((e) => e).join(','),
+        describe: values?.describe,
+        deviceId: this.deviceId
+      }
+      console.log(psotData)
+      /* 提交 */
+      repair(psotData).then(res => {
+        Toast('提交成功')
+        this.$router.replace({ path: '/scan' })
+      })
     },
-    onClickLeft() {
-    },
-    allsubmit(values) {
+    allsubmit() {
       this.$refs.formData1.submit()
-
       this.$refs.formData1.validate().then((res) => {
         console.log(res)
       }).catch(e => {
@@ -233,6 +263,10 @@ export default {
     }
   },
   async mounted() {
+    if (this.$route.query.deviceId) {
+      this.deviceId = this.$route.query.deviceId
+    }
+
     await getDept().then(res => {
       console.log(res)
       if (res.success) {
@@ -358,3 +392,4 @@ export default {
 }
 
 </style>
+

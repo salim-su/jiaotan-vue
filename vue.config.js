@@ -63,15 +63,15 @@ module.exports = {
         pathRewrite: {
           '^/api': '/'
         }
-      },
+      }
       // '/api': {
-      //   target: 'http://localhost:8866/',
-      //   ws:true,
+      //   target: 'http://localhost:8080/',
+      //   ws: true,
       //   changOrigin: true,
       //   pathRewrite: {
       //     '^/api': '/'
       //   }
-      // },
+      // }
       // '/wx': {
       //   target: 'http://jt.fanztech.com/',
       //   // ws:true,
@@ -80,32 +80,6 @@ module.exports = {
       //     '^/wx': '/wx'
       //   }
       // },
-      'cardapi': {
-        target: 'http://8.142.132.141:6041/rest/sql/',
-        // ws:true,
-        changOrigin: true,
-        pathRewrite: {
-          '^/cardapi': '/'
-        }
-      }
-      // '/api/tjpn4-safety': {
-      //   target: 'http://192.168.1.110:8088/',
-      //   // ws:true,
-      //   changOrigin: true,
-      //   pathRewrite: {
-      //     '^/api/tjpn4-safety': '/'
-      //   }
-      // },
-      // // 配置跨域
-      // '/api/login': {
-      //   target: 'http://http://192.168.1.110:8088/',
-      //   // target: 'http://localhost:8088/',
-      //   // ws:true,
-      //   changOrigin: true,
-      //   pathRewrite: {
-      //     '^/api/login': '/'
-      //   }
-      // }
     }
   },
   css: {

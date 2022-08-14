@@ -7,12 +7,15 @@ const api = {
   GetSafetyNotice: 'visitor/wx/getSafetyNotice',
   GetQuestionList: 'visitor/wx/questionList',
   Dictionary: 'blade-system/dict/dictionary',
-  GetDept: 'blade-system/dept/listByCategory?deptCategory=2',
   GetPerson: 'blade-user/list',
   Subscribe: 'visitor/wx/ap',
   ApStatusByOpenId: 'visitor/wx/apStatusByOpenId',
   EntourageSubmit: 'visitor/wx/entourageSubmit',
-  PreloadApByApPersonId: 'visitor/wx/preloadApByApPersonId'
+  PreloadApByApPersonId: 'visitor/wx/preloadApByApPersonId',
+  GetDept: 'blade-system/dept/listByCategory?deptCategory=2',
+  DeviceInfo: 'wechat/deviceInfo',
+  Repair: 'wechat/deviceInfo'
+  // GetDept: 'blade-system/dept/list'
 }
 
 export default api

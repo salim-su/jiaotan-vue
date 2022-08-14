@@ -132,3 +132,22 @@ export function preloadApByApPersonId(apPersonId) {
     hideloading: true
   })
 }
+/* ====================== */
+export function deviceInfo(deviceId) {
+  return request({
+    url: api.DeviceInfo,
+    method: 'get',
+    params: {
+      deviceId: deviceId
+    },
+    hideloading: true
+  })
+}
+export function repair(data) {
+  return request({
+    url: api.Repair,
+    method: 'get',
+    data,
+    hideloading: true
+  })
+}

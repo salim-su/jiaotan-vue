@@ -10,8 +10,8 @@ export default {
 </script>
 <style lang='scss'>
 .van-nav-bar {
-  background: transparent !important;
-  color: #ffffff;
+  //background: transparent !important;
+  //color: #ffffff;
 }
 
 .van-hairline--bottom::after {
@@ -19,7 +19,7 @@ export default {
 }
 
 .van-nav-bar__title {
-  //color: #fff !important;
+  color: #000 !important;
 }
 
 .van-nav-bar .van-icon {
@@ -27,7 +27,7 @@ export default {
 }
 
 .van-nav-bar__text {
-  //color: #fff;
+  color: #000 !important;
 }
 
 .tabbar {
@@ -45,12 +45,8 @@ export default {
   }
 }
 
-.van-nav-bar__text {
-  color: #ffffff !important;
-}
-
 .van-nav-bar .van-icon {
-  color: #ffffff !important;
+  color: #000 !important;
 }
 
 .login {
@@ -105,5 +101,26 @@ export default {
 //      90deg
 //  ) !important;
 //}
+.spec-field{
+  .van-field__value{
+    border: 1px solid #D6D6D6 !important;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  &.van-cell::after{
+    display: none !important;
+  }
+
+}
+.camera{
+  .van-field{
+    padding-left: 0;
+  }
+}
+.device-info-content{
+  .van-hairline--top-bottom::after{
+    border-width: 0 !important;
+  }
+}
 
 </style>

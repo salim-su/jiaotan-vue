@@ -22,17 +22,11 @@ import './filters'
 // moment
 import moment from 'moment'
 import AMap from 'vue-amap'
-import appointmentId from './views/loading/appointmentId'
-import appointmentStatus from './views/loading/appointmentStatus'
 import openId from './views/loading/openId'
-import apPersonId from './views/loading/apPersonId'
 import vueEsign from 'vue-esign'
 import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from 'vue-qrcode-reader'
 
-Vue.prototype.$appointmentId = appointmentId
 Vue.prototype.$openId = openId
-Vue.prototype.$appointmentStatus = appointmentStatus
-Vue.prototype.$apPersonId = apPersonId
 
 Vue.prototype.$cdn = $cdn
 Vue.prototype.$axios = axios
