@@ -8,7 +8,7 @@
       />
       <div class='bt'>
         <div class='flex justify-content-center'>
-          <div class='scan flex flex-column align-items-center justify-content-center' @click='gotest()'>
+          <div class='scan flex flex-column align-items-center justify-content-center' @click='gotoSxsm()'>
             <img src='../../../static/img/saoma.svg' alt=''>
             <h3 class='cfff'>扫描二维码</h3>
           </div>
