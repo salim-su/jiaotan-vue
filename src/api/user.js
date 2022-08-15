@@ -16,7 +16,7 @@ export function deviceInfo(deviceId) {
 export function repair(data) {
   return request({
     url: api.Repair,
-    method: 'get',
+    method: 'post',
     data,
     hideloading: true
   })

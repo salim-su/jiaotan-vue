@@ -1,8 +1,8 @@
 <template>
   <div class='content'>
     <van-nav-bar
-      title="设备报修"
-      :fixed="true"
+      title='设备报修'
+      :fixed='true'
       style='background-color: transparent !important'
     />
     <div class='scan-bg'>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { getWX } from '../../api/user'
+import { deviceInfo, getWX } from 'api/user'
 
 export default {
   name: 'scan',
@@ -50,11 +50,7 @@ export default {
     })
   },
   methods: {
-    onClickLeft() {},
-    gotoYydj() {
-      // apStatusByOpenId(this.$openId.openId).then(res => {
-      // })
-      this.$router.replace({ path: '/subscribe-info' })
+    onClickLeft() {
     },
     gotoSxsm() {
       this.$wx.ready(() => {
@@ -64,8 +60,9 @@ export default {
           success: res => {
             var result = res.resultStr // 当needResult 为 1 时，扫码返回的结果
             this.info = result
-            // this.$router.replace({ path: '/subscribe-companion', query: { qrApPersonId: this.info } })
-            this.$router.replace({ path: '/device-info', query: { deviceId: this.info } })
+            deviceInfo(this.info).then(res => {
+              this.$router.replace({ path: '/device-info', query: { deviceId: this.info } })
+            })
           }
         })
       })
@@ -86,14 +83,14 @@ export default {
   background-size: cover;
   position: relative;
 
-.bt {
-  height: 130px;
-  width: 100%;
-  position: absolute;
-  bottom: 30px;
-  left: 0;
-//background-color: #44A4AD;
-}
+  .bt {
+    height: 130px;
+    width: 100%;
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    //background-color: #44A4AD;
+  }
 }
 
 .content {

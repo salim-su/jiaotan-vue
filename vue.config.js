@@ -56,22 +56,22 @@ module.exports = {
     },
     proxy: {
       // 配置跨域
-      '/api': {
-        target: 'http://tjgjt-wlry.fanztech.com:5008/api/',
-        // ws:true,
-        changOrigin: true,
-        pathRewrite: {
-          '^/api': '/'
-        }
-      }
       // '/api': {
-      //   target: 'http://localhost:8080/',
-      //   ws: true,
+      //   target: 'http://tjgjt-wlry.fanztech.com:5008/api/',
+      //   // ws:true,
       //   changOrigin: true,
       //   pathRewrite: {
       //     '^/api': '/'
       //   }
       // }
+      '/api': {
+        target: 'http://192.168.1.111:8080/',
+        ws: true,
+        changOrigin: true,
+        pathRewrite: {
+          '^/api': '/'
+        }
+      }
       // '/wx': {
       //   target: 'http://jt.fanztech.com/',
       //   // ws:true,

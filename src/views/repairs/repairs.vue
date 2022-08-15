@@ -26,8 +26,8 @@
         <div class='camera'>
           <div class='fs14'>问题图片</div>
 
-          <van-field name='uploader' :rules="[{ required: true , message: '请上传照片' }]"
-          >
+          <van-field name='uploader'>
+            <!--          <van-field name='uploader' :rules="[{ required: true , message: '请上传照片' }]">-->
             <template #input>
               <van-uploader v-model='photoPerson'
                             :max-count='2'
@@ -64,50 +64,39 @@
         </van-popup>
 
         <van-field
-          readonly
           label-width='130px'
-          clickable
-          right-icon='arrow-down'
-          name='auditUser'
-          :value='auditUser["realName"]'
-          label='审核人'
-          placeholder='请选择审核人'
-          @click='go()'
+          v-model='applicant'
+          name='applicant'
+          label='申请人'
+          placeholder='请输入申请人'
           :rules='[{ required: true}]'
         />
-        <van-popup v-model='showAuditUserPicker' position='bottom'>
-          <van-picker
-            show-toolbar
-            :columns='auditUserColumns'
-            value-key='realName'
-            @confirm='onAuditUserConfirm'
-            @cancel='showAuditUserPicker = false'
-          />
-        </van-popup>
 
 
-        <div class='flex justify-content-between pl20 pr20'>
+        <div></div>
 
-
-          <van-button class='mt30 login-btn ml10 mr10' color='linear-gradient(to bottom, #C8C8C8, #C8C8C8)'
-                      round
-                      block
-                      @click='cancel'>
-            <span class='cfff ls2'>取消</span>
-          </van-button>
-
-
-          <van-button class='mt30 login-btn ml10 mr10' color='linear-gradient(to bottom, #9e9be9, #7A76E4)'
-                      round
-                      block
-                      @click='allsubmit'>
-            <span class='cfff ls2'>提交</span>
-          </van-button>
-
-
-        </div>
 
       </van-form>
+      <div class='flex justify-content-between pl20 pr20'>
+
+
+        <van-button class='mt30 login-btn ml10 mr10' color='linear-gradient(to bottom, #C8C8C8, #C8C8C8)'
+                    round
+                    block
+                    @click='cancel'>
+          <span class='cfff ls2'>取消</span>
+        </van-button>
+
+
+        <van-button class='mt30 login-btn ml10 mr10' color='linear-gradient(to bottom, #9e9be9, #7A76E4)'
+                    round
+                    block
+                    @click='allsubmit'>
+          <span class='cfff ls2'>提交</span>
+        </van-button>
+
+
+      </div>
     </div>
 
 
@@ -115,7 +104,7 @@
 </template>
 <script>
 import { Toast } from 'vant'
-import { getDept, getPerson, repair } from 'api/user'
+import { getDept, repair } from 'api/user'
 
 export default {
   name: 'repairs',
@@ -127,9 +116,7 @@ export default {
       auditDeptColumns: '',
       auditDept: '',
       auditDeptId: '',
-      auditUserColumns: '',
-      auditUser: '',
-      auditUserId: '',
+      applicant: '',
       showAuditDeptPicker: false,
       showAuditUserPicker: false,
       deviceId: ''
@@ -142,55 +129,33 @@ export default {
     onClickLeft() {
       this.$router.replace({ path: '/device-info', query: { deviceId: this.deviceId } })
     },
-    go() {
-      if (this.auditDeptId === '') {
-        Toast({
-          message: '请先选择部门'
-        })
-        return
-      } else if (this.auditUserColumns.length === 0) {
-        Toast({
-          message: '加载中，请重试'
-        })
-        return
-      } else {
-        this.showAuditUserPicker = true
-      }
-    },
-    onAuditUserConfirm(value) {
-      this.auditUser = value
-      this.auditUserId = value['id']
-      this.showAuditUserPicker = false
-    },
     onAuditDeptConfirm(value) {
       console.log('打开')
       this.auditDept = value
       this.auditDeptId = value['id']
-      getPerson(this.auditDeptId).then(res => {
-        console.log(res)
-        this.auditUserColumns = res?.data?.records
-      })
       this.showAuditDeptPicker = false
     },
     onSubmit(values) {
       const psotData = {
         openId: this.$openId.openId,
-        applicant: this.auditUserId,
+        applicant: values?.applicant,
         ossIds: this.photoIDPerson.map((e) => e).join(','),
         describe: values?.describe,
-        deviceId: this.deviceId
+        deviceId: this.deviceId,
+        applyDeptId: this.auditDeptId
       }
       console.log(psotData)
       /* 提交 */
       repair(psotData).then(res => {
         Toast('提交成功')
-        this.$router.replace({ path: '/scan' })
+        setTimeout(res => {
+          this.$router.replace({ path: '/scan' })
+        }, 100)
       })
     },
     allsubmit() {
       this.$refs.formData1.submit()
       this.$refs.formData1.validate().then((res) => {
-        console.log(res)
       }).catch(e => {
         console.log(e)
         Toast('请完善信息')
@@ -314,7 +279,7 @@ export default {
   border: 1px dashed #C5C4D5 !important;
   background-color: #F7F7FF;
   //border-color: white;
-  background-image: url("../../../static/img/camera.png");
+  background-image: url("../../../static/img/camera.svg");
   background-repeat: no-repeat;
   background-size: 60%;
   background-position: center;

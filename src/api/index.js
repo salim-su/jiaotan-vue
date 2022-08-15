@@ -1,9 +1,9 @@
 const api = {
-  WxApi: 'wx/jsapi/wx35b00a7e3d45b99c/getJsapiSignature',
-  GetDept: 'blade-system/dept/listByCategory?deptCategory=2',
+  WxApi: 'wx/jsapi/wxda9a077bdaf01750/getJsapiSignature',
+  GetDept: 'wechat/listDept',
   GetPerson: 'blade-user/list',
   DeviceInfo: 'wechat/deviceInfo',
-  Repair: 'wechat/deviceInfo'
+  Repair: 'wechat/repair'
   // GetDept: 'blade-system/dept/list'
 }
 
