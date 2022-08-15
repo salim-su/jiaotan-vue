@@ -1,11 +1,11 @@
 <template>
   <div class='content'>
-    <van-nav-bar
-      title='设备报修'
-      :fixed='true'
-      style='background-color: transparent !important'
-    />
+
     <div class='scan-bg'>
+      <van-nav-bar
+        title='设备报修'
+        style='background-color: transparent !important'
+      />
       <div class='bt'>
         <div class='flex justify-content-center'>
           <div class='scan flex flex-column align-items-center justify-content-center' @click='gotest()'>
@@ -97,6 +97,13 @@ export default {
   height: 100vh;
   width: 100vw;
   background-color: #ffffff;
+  //background-color: red;
+  //overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  overflow: auto;
 }
 
 

@@ -8,7 +8,39 @@
       :fixed='true'
       style='background-color: #F6F6F6'
     />
-    <div class='content-info'>
+
+    <van-field
+      readonly
+      label-width='130px'
+      clickable
+      right-icon='arrow-down'
+      name='auditDept'
+      :value='auditDept["deptName"]'
+      label='审核部门'
+      placeholder='请选择审核部门'
+      @click='showAuditDeptPicker = true'
+      :rules='[{ required: true}]'
+    />
+    <van-popup v-model='showAuditDeptPicker' position='bottom'>
+      <van-picker
+        show-toolbar
+        :columns='auditDeptColumns'
+        value-key='deptName'
+        @confirm='onAuditDeptConfirm'
+        @cancel='showAuditDeptPicker = false'
+      />
+    </van-popup>
+
+    <van-field
+      label-width='130px'
+      v-model='applicant'
+      name='applicant'
+      label='申请人'
+      placeholder='请输入申请人'
+      :rules='[{ required: true}]'
+    />
+
+    <div class='content-info mt10'>
       <van-form @submit='onSubmit' ref='formData1'>
         <div class='pl15 fs14'>问题描述</div>
         <van-field
@@ -41,39 +73,9 @@
           </van-field>
         </div>
 
-        <van-field
-          readonly
-          label-width='130px'
-          clickable
-          right-icon='arrow-down'
-          name='auditDept'
-          :value='auditDept["deptName"]'
-          label='审核部门'
-          placeholder='请选择审核部门'
-          @click='showAuditDeptPicker = true'
-          :rules='[{ required: true}]'
-        />
-        <van-popup v-model='showAuditDeptPicker' position='bottom'>
-          <van-picker
-            show-toolbar
-            :columns='auditDeptColumns'
-            value-key='deptName'
-            @confirm='onAuditDeptConfirm'
-            @cancel='showAuditDeptPicker = false'
-          />
-        </van-popup>
-
-        <van-field
-          label-width='130px'
-          v-model='applicant'
-          name='applicant'
-          label='申请人'
-          placeholder='请输入申请人'
-          :rules='[{ required: true}]'
-        />
 
 
-        <div></div>
+
 
 
       </van-form>
